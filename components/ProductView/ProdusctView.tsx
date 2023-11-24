@@ -11,7 +11,7 @@ export type Book = {
 };
 
 
-const ProductView: React.FC<Book> = ({ title, description, author, rank, cover, releaseDate }) => {
+const ProductView: React.FC<Book> = ({ title = 'Title', description, author, rank, cover, releaseDate }) => {
     return (
         <div className='grid md:grid-cols-2 p-2 sm:grid-cols-1'>
             <div className='flex justify-center p-4'>
