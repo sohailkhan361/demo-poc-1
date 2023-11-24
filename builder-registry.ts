@@ -2,6 +2,7 @@
 import { Builder } from "@builder.io/react";
 import Counter from "./components/Counter/Counter";
 import Header from "./components/Header/Header";
+import ProductsGrid from "./components/ProductGrid/ProductGrid";
 import ProductView from "./components/ProductView/ProdusctView";
 
 Builder.registerComponent(Counter, {
@@ -55,6 +56,47 @@ Builder.registerComponent(ProductView, {
       name: "title",
       type: "string",
       required: true,
+    },
+  ],
+});
+
+Builder.registerComponent(ProductsGrid, {
+  name: 'ProductsGrid',
+  inputs: [
+    {
+      name: 'products',
+      type: 'list',
+      subFields: [
+        {
+          name: 'name',
+          type: 'string',
+          defaultValue: 'Default Title'
+        },
+        {
+          name: 'description',
+          type: 'string',
+          defaultValue: 'Default Description'
+        },
+        {
+          name: 'author',
+          type: 'string',
+          defaultValue: 'Default Author'
+        },
+        {
+          name: 'salesrank',
+          type: 'number',
+          defaultValue: 999
+        },
+        {
+          name: 'image',
+          type: 'string',
+          defaultValue: 'https://podiumaudio.com/wp-content/uploads/2022/09/Book-Cover-default-768x768.jpeg'
+        },
+        {
+          name: 'releaseDate',
+          type: 'string',
+        },
+      ],
     },
   ],
 });
