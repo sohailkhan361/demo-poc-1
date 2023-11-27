@@ -1,17 +1,28 @@
+import { builder } from '@builder.io/sdk'
 import ProductView from '@/components/ProductView/ProdusctView';
 import ProductsGrid from '../components/ProductGrid/ProductGrid'
-import { BuilderElement, builder } from '@builder.io/sdk'
+import Navbar from '@/components/Navbar/Navbar';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
 export default async function Home() {
+  const navList = await builder.get('navbar', {
+    options: {
+        query: {
+          'name': 'List 1'
+        }
+    }
+  }).promise();
+  const navItems = navList?.data?.links || [];
   const productsList = await builder.get('products-list').promise();
   const productsItems = productsList?.data?.products || [];
-
-  // console.log(productsList?.data?.products[0]?.product);
+  
+  // console.log(navList?.data?.links);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main>
+      <Navbar links={navItems}/>
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <ProductView
         cover={productsItems[0]?.product?.image}
         title={productsItems[0]?.product?.name}
@@ -26,6 +37,7 @@ export default async function Home() {
         </div>
         <ProductsGrid products={productsItems}/>
       </div>
+    </main>
     </main>
   )
 }
