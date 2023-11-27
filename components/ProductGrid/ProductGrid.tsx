@@ -20,7 +20,7 @@ type ProductsGridProps = {
 
 const ProductsGrid: React.FC<ProductsGridProps> = ({ products = []}) => {
     return (
-        <div className='grid grid-cols-3 w-full'>
+        <div className='grid md:grid-cols-3 sm:grid-cols-1 overflow-auto w-full'>
             {products.map((product, index) => (
                 <div key={index} className='flex flex-col justify-center p-2 m-2'>
                     {isProduct(product) ? (

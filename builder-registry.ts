@@ -1,6 +1,8 @@
+"use client";
 import { Builder } from "@builder.io/react";
 import Counter from "./components/Counter/Counter";
 import Header from "./components/Header/Header";
+import Hero from "./components/Hero/Hero";
 import Navbar from "./components/Navbar/Navbar";
 import ProductsGrid from "./components/ProductGrid/ProductGrid";
 import ProductView from "./components/ProductView/ProdusctView";
@@ -103,17 +105,33 @@ Builder.registerComponent(ProductsGrid, {
 });
 
 Builder.registerComponent(Navbar, {
-  name: 'Navbar',
+  name: "Navbar",
   inputs: [
     {
-      name: 'links',
-      type: 'list',
+      name: "links",
+      type: "list",
       subFields: [
         {
-          name: 'name',
-          type: 'string',
+          name: "name",
+          type: "string",
         },
       ],
+    },
+  ],
+});
+
+Builder.registerComponent(Hero, {
+  name: "Hero",
+  inputs: [
+    {
+      name: "imageUrl",
+      type: "string",
+      required: true,
+    },
+    {
+      name: "title",
+      type: "string",
+      required: true,
     },
   ],
 });

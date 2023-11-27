@@ -23,7 +23,7 @@ const ProductView: React.FC<Book> = ({ title = 'Title', description, author, ran
                     priority={true}
                 />
             </div>
-            <div className='flex flex-col p-4 font-bold md:border-l-4 pl-6'>
+            <div className='flex flex-col p-4 font-bold md:border-l-4 pl-6 ms:text-sm'>
                 <h1 className='text-lg'>{title}</h1>
                 <p className='text-sm font-normal'>About: <br/> {description}</p>
                 <h4>Author: {author}</h4>
