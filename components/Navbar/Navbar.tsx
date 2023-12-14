@@ -20,12 +20,12 @@ const Navbar: React.FC<NavbarProps> = ({ links = [{ name: 'Home' }] }) => {
                 priority={true}
             />
             <div className='hidden md:flex gap-5 text-lg font-bold'>
-                {links.map((item) => (
+                {links && links?.map((item) => (
                     <h2
-                        key={item.name}
+                        key={item?.name}
                         className='hover:bg-blue-500 px-3 cursor-pointer p-2 rounded-full hover:text-white'
                     >
-                        {item.name}
+                        {item?.name || "Link"}
                     </h2>
                 ))}
             </div>
