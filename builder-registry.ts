@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import Navbar from "./components/Navbar/Navbar";
 import ProductsGrid from "./components/ProductGrid/ProductGrid";
-import ProductView from "./components/ProductView/ProdusctView";
+import ProductView from "./components/ProductView/ProductView";
 
 Builder.registerComponent(Counter, {
   name: "Counter",

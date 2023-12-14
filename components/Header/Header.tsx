@@ -6,7 +6,7 @@ interface HeaderProps {
     headerText?: string;
 }
 
-function Header({ headerText = 'Header...' }: HeaderProps) {
+function Header({ headerText = 'Header' }: HeaderProps) {
     return (
         <div className={styles.Header}>
             <h1>{headerText}</h1>
