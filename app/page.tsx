@@ -1,5 +1,5 @@
 import { builder } from '@builder.io/sdk'
-import ProductView from '@/components/ProductView/ProdusctView';
+import ProductView from '@/components/ProductView/ProductView';
 import ProductsGrid from '../components/ProductGrid/ProductGrid'
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
