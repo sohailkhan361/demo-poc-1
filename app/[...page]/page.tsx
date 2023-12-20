@@ -10,6 +10,15 @@ interface PageProps {
   };
 }
 
+// Locales to test:
+// const myLocale = ""
+// const myLocale = "es-ES"
+// const myLocale = "en-US"
+// const myLocale = "fr-FR"
+// const myLocale = "it-IT"
+// const myLocale = "pl-PL"
+const myLocale = "de-DE"
+
 export default async function Page(props: PageProps) {
   const content = await builder
     // Get the page content from Builder with the specified options
@@ -17,6 +26,10 @@ export default async function Page(props: PageProps) {
       userAttributes: {
         // Use the page path specified in the URL to fetch the content
         urlPath: "/" + (props?.params?.page?.join("/") || ""),
+        locale: myLocale,
+      },
+      options: {
+        locale: myLocale,  // For a block level localization
       },
       cachebust: true,
       cacheSeconds: 10
