@@ -13,8 +13,25 @@ interface PageProps {
     };
 }
 
+type MyObject = { val: number; quote: string }[];
+
+// This could be data from DB or API with offset & limit
+const sampleData: MyObject = [
+    { val: 1, quote: "The only limit to our realization of tomorrow will be our doubts of today." },
+    { val: 2, quote: "Success is not final, failure is not fatal: It is the courage to continue that counts." },
+    { val: 3, quote: "Your time is limited, don't waste it living someone else's life." },
+    { val: 4, quote: "The greatest glory in living lies not in never falling, but in rising every time we fall." },
+    { val: 5, quote: "Life is what happens when you're busy making other plans." },
+    { val: 6, quote: "Get busy living or get busy dying." },
+    { val: 7, quote: "The purpose of our lives is to be happy." },
+    { val: 8, quote: "Life is really simple, but we insist on making it complicated." },
+    { val: 9, quote: "Life is short, and it's up to you to make it sweet." },
+    { val: 10, quote: "In three words I can sum up everything I've learned about life: it goes on." },
+];
+
 export default function Page(props: PageProps) {
     const [content, setContent] = useState(null);
+    const [contentBar, setContentBar] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,8 +40,21 @@ export default function Page(props: PageProps) {
                     userAttributes: {
                         urlPath: "/product-view-test-data" + (props?.params?.page?.join("/") || ""),
                     },
+                    cachebust: true,
+                    cacheSeconds: 10
                 })
                 .toPromise();
+
+            const resultBar = await builder
+                .get("page", {
+                    userAttributes: {
+                        urlPath: "/announcement-bar" + (props?.params?.page?.join("/") || ""),
+                    },
+                    cachebust: true,
+                    cacheSeconds: 10
+                })
+                .toPromise();
+            setContentBar(resultBar);
             setContent(result);
         };
 
@@ -33,18 +63,24 @@ export default function Page(props: PageProps) {
 
     return (
         <div>
-            {content && (
-                <BuilderComponent
-                    content={content}
-                    model="page"
-                    data={{
-                        name: "JON DOE",
-                        company: "ABC",
-                        description: "Example of passing data to BuilderComponent page through code. This is my own description supplied through my code.",
-                        list: [1, 2, 3, 4],
-                        obj: [{ val: 1 }, { val: 2 }, { val: 2 }],
-                    }}
-                />
+            {content && contentBar && (
+                <>
+                    <BuilderComponent
+                        content={contentBar}
+                        model="page"
+                    />
+                    <BuilderComponent
+                        content={content}
+                        model="page"
+                        data={{
+                            name: "JON DOE",
+                            company: "ABC",
+                            description: "Example of passing data to BuilderComponent page through code. This is my own description supplied through my code.",
+                            list: [1, 2, 3, 4],
+                            obj: sampleData,
+                        }}
+                    />
+                </>
             )}
         </div>
     );
