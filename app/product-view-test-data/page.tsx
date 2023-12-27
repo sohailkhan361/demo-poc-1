@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import { builder } from "@builder.io/sdk";
 import { BuilderComponent } from "@builder.io/react";
+import "../../builder-registry";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -45,15 +46,15 @@ export default function Page(props: PageProps) {
                 })
                 .toPromise();
 
+            // Always use respective models for the section/symbol to integrate into the code.
             const resultBar = await builder
-                .get("page", {
-                    userAttributes: {
-                        urlPath: "/announcement-bar" + (props?.params?.page?.join("/") || ""),
-                    },
+                .get("symbol", {
+                    query: { "id": "64a6adce90d54439874424d361264d43" },
                     cachebust: true,
                     cacheSeconds: 10
                 })
                 .toPromise();
+
             setContentBar(resultBar);
             setContent(result);
         };
@@ -67,7 +68,7 @@ export default function Page(props: PageProps) {
                 <>
                     <BuilderComponent
                         content={contentBar}
-                        model="page"
+                        model="symbol"
                     />
                     <BuilderComponent
                         content={content}
